@@ -64,3 +64,5 @@ to_from_value!(u32);
 to_from_value!(u64);
 to_from_value!(u128);
 to_from_value!(usize);
+to_from_value!(f32);
+to_from_value!(f64);

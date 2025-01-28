@@ -46,11 +46,23 @@
 //! without a CPU implementation, the std::time version is used
 //! whatever the value of the generic.
 //!
+//! ## Timer
+//!
+//! The base type provided by this library is [Timer], which simply
+//! has a `start` method and an `elapsed` method, to delver the ticks
+//! (as a u64) since the last `state. It uses a generic *UseAsm* bool;
+//! if true then the CPU specific timer implementation is used,
+//! otherwise it uses std::time.
+//!
+//! There is an additional method `elapsed_and_update`, which restarts
+//! the timer as well as returning the elapsed time, in a single
+//! operation.
+//!
 //! ## DeltaTimer
 //!
-//! The base type provided by this library is [Timer], which allows
-//! for recording the delta in CPU ticks between the entry to a region
-//! of code and the exit from it. It uses a generic *UseAsm* bool.
+//! The [DeltaTimer] allows for *recording* the delta in CPU ticks
+//! between the entry to a region of code and the exit from it. It
+//! uses a generic *UseAsm* bool.
 //!
 //! ```
 //! # use cpu_timer::DeltaTimer;
@@ -86,9 +98,9 @@
 //! println!("That took an average of {} ticks", t.acc_value()/100);
 //! ```
 //!
-//! ## AccVec
+//! ## AccArray
 //!
-//! An [AccVec] is used to accumulate timer values, storing not just
+//! An [AccArray] is used to accumulate timer values, storing not just
 //! the times but also (optionally) the number of occurrences.
 //!
 //! It is used as `AccVec<A, T, C, N>`; A is a bool; T the time accumulator type; C the counter type; N the number of accumulators.
@@ -96,7 +108,28 @@
 //!  * A is true if the CPU-specific timer should be used, false if
 //!    std::time should be used
 //!
-//!  * T is the type used for accumulating time deltas
+//!  * T is the type used for accumulating time deltas (u8, u16, u32,
+//!    u64, u128, usize, f32, f64, or () to not accumulate times)
+//!
+//!  * C is the type used for counting occurrences (u8, u16, u32,
+//!     u64, u128, usize, f32, f64, or () to not count occurrences)
+//!
+//!  * N can be any usize; the space for the occurrence accumulators
+//!    and counters is statically held within the type, so *N* effects
+//!    the size of the AccArray
+//!
+//! The array can be cleared - clearing the accumulators.
+//!
+//! A use is to first invoke `start` and then later `acc_n` with a
+//! specific index which identifies the code just executed; the time
+//! elapsed since the last start is accumulated and the occurrences
+//! counted.
+//!
+//! ## AccVec
+//!
+//! An [AccVec] is a less static version of [AccArray], using an array
+//! backed by a `Vec`. It has the same methods, and additional `push`
+//! related methods.
 //!
 //! ## Trace
 //!
@@ -314,7 +347,6 @@
 //a Imports
 mod delta;
 mod traits;
-pub(crate) use delta::Delta;
 
 mod acc_vec;
 mod arch;
@@ -322,11 +354,14 @@ mod base;
 mod timers;
 mod trace;
 
+//a Export to the crate, but not outside
+pub(crate) use base::BaseTimer;
+pub(crate) use delta::Delta;
 pub(crate) use traits::private;
 
-pub use acc_vec::AccVec;
+//a Export to outside
+pub use acc_vec::{AccArray, AccVec};
 pub use arch::TDesc;
-pub(crate) use base::BaseTimer;
 pub use timers::{AccTimer, DeltaTimer, Timer};
 pub use trace::{AccTrace, Trace};
 pub use traits::{TArch, TraceCount, TraceValue};

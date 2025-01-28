@@ -71,12 +71,28 @@ macro_rules! trace_count {
         }
     }
 }
+macro_rules! trace_float_count {
+    {$t:ty} => {
+        impl TraceCount for $t {
+            #[inline(always)]
+            fn sat_inc(&mut self) {
+                *self += 1.0;
+            }
+            #[inline(always)]
+            fn as_usize(self) -> usize {
+                self as usize
+            }
+        }
+    }
+}
 trace_count!(u8);
 trace_count!(u16);
 trace_count!(u32);
 trace_count!(u64);
 trace_count!(u128);
 trace_count!(usize);
+trace_float_count!(f32);
+trace_float_count!(f64);
 
 //a TraceValue
 //tt TraceValue
@@ -104,12 +120,23 @@ macro_rules! trace_value {
         }
     }
 }
+macro_rules! trace_float_value {
+    {$t:ty} => {
+        impl private::TraceValue for $t {
+            fn sat_add(self, other:u64) -> Self {
+                self + (other as $t)
+            }
+        }
+    }
+}
 trace_value!(u8);
 trace_value!(u16);
 trace_value!(u32);
 trace_value!(u64);
 trace_value!(u128);
 trace_value!(usize);
+trace_float_value!(f32);
+trace_float_value!(f64);
 
 //tt TArch
 /// Trait provided for architecture-specific timers
