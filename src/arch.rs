@@ -101,8 +101,9 @@ mod arch {
         let hi: u64;
         unsafe {
             asm!(
-                "ldfence
-                rdtsc",
+                "
+                rdtsc
+                ",
                 lateout("eax") lo,
                 lateout("edx") hi,
               options(nomem, nostack)
