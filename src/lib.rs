@@ -223,48 +223,48 @@
 //! | 99   |     42       |      42      |       84     |        42    |
 //! | 100  |  27084       |    2498      |     2166     |      1125    |
 //!
-//! ### MacOs aarch64 std::time release
-//!
-//! Percentile distribution
-//! 56, 0
-//! 71, 41
-//! 99, 42
-//! 100, 1125
-//!
-//! average of up to 95 8
-//!
-//! ### MacOs aarch64 std::time debug
-//!
-//! Percentile distribution
-//! 6, 41
-//! 18, 42
-//! 71, 83
-//! 98, 84
-//! 99, 125
-//! 100, 2166
-//!
-//! average of up to 95 17
-//!
-//! ### MacOs aarch64 debug
-//!
-//! Percentile distribution
-//! 52, 0
-//! 68, 41
-//! 99, 42
-//! 100, 2958
-//!
-//! average of up to 95 9
-//!
-//! ### MacOs aarch64 release
-//!
-//! Percentile distribution
-//! 77, 0
-//! 85, 41
-//! 99, 42
-//! 100, 1500
-//!
-//! average of up to 95 3
-//!
+// ### MacOs aarch64 std::time release
+//
+// Percentile distribution
+// 56, 0
+// 71, 41
+// 99, 42
+// 100, 1125
+//
+// average of up to 95 8
+//
+// ### MacOs aarch64 std::time debug
+//
+// Percentile distribution
+// 6, 41
+// 18, 42
+// 71, 83
+// 98, 84
+// 99, 125
+// 100, 2166
+//
+// average of up to 95 17
+//
+// ### MacOs aarch64 debug
+//
+// Percentile distribution
+// 52, 0
+// 68, 41
+// 99, 42
+// 100, 2958
+//
+// average of up to 95 9
+//
+// ### MacOs aarch64 release
+//
+// Percentile distribution
+// 77, 0
+// 85, 41
+// 99, 42
+// 100, 1500
+//
+// average of up to 95 3
+//
 //! ## MacOs x86_64
 //!
 //! MacBook Pro 2018 Os 15.0 rustc 1.84 2.2GHz i7
@@ -287,62 +287,62 @@
 //! | 100  |  42918       |   65262      |    17101     |     24560    |
 //!
 //!
-//! ### MacOs x86_64 release
-//!
-//! Percentile distribution
-//! 5, 12
-//! 73, 14
-//! 99, 16
-//! 100, 42918
-//!
-//! average of up to 95 15
-//!
-//! ### MacOs x86_64 debug
-//!
-//! Percentile distribution
-//! 4, 62
-//! 22, 64
-//! 55, 66
-//! 81, 68
-//! 92, 70
-//! 96, 72
-//! 98, 74
-//! 99, 82
-//! 100, 65262    
-//!
-//! average of up to 95 78
-//!
-//! ### MacOs std::time debug
-//!
-//! Percentile distribution
-//! 1, 70
-//! 4, 71
-//! 9, 72
-//! 15, 73
-//! 22, 74
-//! 28, 75
-//! 34, 76
-//! 40, 77
-//! 45, 78
-//! 50, 79
-//! 56, 80
-//! 66, 81
-//! 79, 82
-//! 90, 83
-//! 96, 84
-//! 98, 85
-//! 99, 132
-//! 100, 17101
-//!
-//! ### MacOs std::time release
-//!
-//! Percentile distribution
-//! 3, 37
-//! 44, 38
-//! 92, 39
-//! 96, 40
-//! 99, 41
-//! 100, 24560
+// ### MacOs x86_64 release
+//
+// Percentile distribution
+// 5, 12
+// 73, 14
+// 99, 16
+// 100, 42918
+//
+// average of up to 95 15
+//
+// ### MacOs x86_64 debug
+//
+// Percentile distribution
+// 4, 62
+// 22, 64
+// 55, 66
+// 81, 68
+// 92, 70
+// 96, 72
+// 98, 74
+// 99, 82
+// 100, 65262
+//
+// average of up to 95 78
+//
+// ### MacOs std::time debug
+//
+// Percentile distribution
+// 1, 70
+// 4, 71
+// 9, 72
+// 15, 73
+// 22, 74
+// 28, 75
+// 34, 76
+// 40, 77
+// 45, 78
+// 50, 79
+// 56, 80
+// 66, 81
+// 79, 82
+// 90, 83
+// 96, 84
+// 98, 85
+// 99, 132
+// 100, 17101
+//
+// ### MacOs std::time release
+//
+// Percentile distribution
+// 3, 37
+// 44, 38
+// 92, 39
+// 96, 40
+// 99, 41
+// 100, 24560
 
 //a Imports
 mod delta;

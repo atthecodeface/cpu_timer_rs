@@ -1,14 +1,14 @@
 [package]
 name = "cpu_timer"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 readme = "README.md"
 authors = ["Gavin J Stark"]
 description = "Precise CPU timers with backup to std::time, for in-library timing"
-homepage = "https://github.com/atthecodeface/cpu_timer"
+homepage = "https://github.com/atthecodeface/cpu_timer_rs"
 documentation = "https://docs.rs/cpu_timer"
 keywords = ["timer", "precise", "cpu"]
 categories = ["date-and-time"]
 license = "MIT OR Apache-2.0"
-repository = "https://github.com/atthecodeface/cpu_timer"
+repository = "https://github.com/atthecodeface/cpu_timer_rs"
 

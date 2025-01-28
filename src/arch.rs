@@ -3,9 +3,18 @@ use crate::private;
 
 //a Architecture-specific and standard get_timer functions
 //tp TDesc
-/// Marker type generic on a bool, which has the 'TArch' trait
+/// Marker type generic on a bool, which has the [TArch] trait
 /// implemented for it for (true) an assembler architecture specific
 /// timer implementation, and (false) for a std::time implementation
+///
+/// This is used in a 'where' clause for a type, e.g.
+///
+/// ```ignore
+/// fn foo<const S: bool>(... t: &Timer<S>) -> ()
+/// where
+///    TDesc<S>: TArch,
+/// ```
+///
 #[derive(Default)]
 pub struct TDesc<const B: bool>();
 

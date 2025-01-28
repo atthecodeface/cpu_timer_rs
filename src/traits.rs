@@ -41,8 +41,8 @@ pub(crate) mod private {
 
 //a TraceCount
 //tt TraceCount
-/// A value that can be stored in a Trace; this is implemented for u8,
-/// u16, u32, u64 and usize
+/// A value that can be use to count occurrences; this is implemented for (), u8,
+/// u16, u32, u64, u128, usize, f32 and f64
 pub trait TraceCount: Default + Copy {
     fn sat_inc(&mut self);
     fn as_usize(self) -> usize;
@@ -71,6 +71,14 @@ macro_rules! trace_count {
         }
     }
 }
+trace_count!(u8);
+trace_count!(u16);
+trace_count!(u32);
+trace_count!(u64);
+trace_count!(u128);
+trace_count!(usize);
+
+//ip TraceCount for f32, f64
 macro_rules! trace_float_count {
     {$t:ty} => {
         impl TraceCount for $t {
@@ -85,19 +93,13 @@ macro_rules! trace_float_count {
         }
     }
 }
-trace_count!(u8);
-trace_count!(u16);
-trace_count!(u32);
-trace_count!(u64);
-trace_count!(u128);
-trace_count!(usize);
 trace_float_count!(f32);
 trace_float_count!(f64);
 
 //a TraceValue
 //tt TraceValue
-/// A value that can be stored in a Trace; this is implemented for u8,
-/// u16, u32, u64 and usize
+/// A value that can be stored in a Trace; this is implemented for (), u8,
+/// u16, u32, u64, u128, usize, f32 and f64
 // Note that the type 'crate::Delta' is private
 #[allow(private_bounds)]
 pub trait TraceValue: private::TraceValue {}
@@ -120,6 +122,14 @@ macro_rules! trace_value {
         }
     }
 }
+trace_value!(u8);
+trace_value!(u16);
+trace_value!(u32);
+trace_value!(u64);
+trace_value!(u128);
+trace_value!(usize);
+
+//ip TraceValue for f32/f64
 macro_rules! trace_float_value {
     {$t:ty} => {
         impl private::TraceValue for $t {
@@ -129,12 +139,6 @@ macro_rules! trace_float_value {
         }
     }
 }
-trace_value!(u8);
-trace_value!(u16);
-trace_value!(u32);
-trace_value!(u64);
-trace_value!(u128);
-trace_value!(usize);
 trace_float_value!(f32);
 trace_float_value!(f64);
 
@@ -142,7 +146,16 @@ trace_float_value!(f64);
 /// Trait provided for architecture-specific timers
 ///
 /// This is supported by a single assembler timer and a standard
-/// (std::time) timer
+/// (std::time) timer; it is shown by looking for its implementation on the type [crate::TDesc]
+///
+/// This is used in a 'where' clause for a type, e.g.
+///
+/// ```ignore
+/// fn foo<const S: bool>(... t: &Timer<S>) -> ()
+/// where
+///    TDesc<S>: TArch,
+/// ```
+///
 #[allow(private_bounds)]
 pub trait TArch: private::ArchDesc {}
 
