@@ -4,7 +4,7 @@ use crate::{BaseTimer, Delta, TArch, TDesc};
 //a Timer
 //tp Timer
 /// A basic timer that supports start, elapsed, and elapsed_and_update
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Clone, Copy)]
 pub struct Timer<const S: bool>
 where
     BaseTimer<S>: Default,
@@ -62,7 +62,7 @@ where
 /// t.stop();
 /// println!("That took {} ticks", t.value());
 /// ```
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Clone, Copy)]
 pub struct DeltaTimer<const S: bool>
 where
     BaseTimer<S>: Default,
@@ -116,7 +116,7 @@ where
 //tp AccTimer
 /// An timer that accumulates the value for multiple timer start-stops
 ///
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Clone, Copy)]
 pub struct AccTimer<const S: bool>
 where
     TDesc<S>: TArch,

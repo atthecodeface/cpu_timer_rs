@@ -29,7 +29,7 @@ use crate::{BaseTimer, TArch, TDesc, TraceCount, TraceValue};
 /// of (), u8, u16, u32, u64, u128 and usize, and for a counter value
 /// of (), u8, u16, u32, u64, usize. If a value of () is used then the
 /// count or delta accumulator are effectively always 0.
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct AccArray<const S: bool, T: TraceValue, C: TraceCount, const N: usize>
 where
     TDesc<S>: TArch,
@@ -268,7 +268,7 @@ where
 ///     println!("Counting {i} characters took an average of {} ticks", avg);
 /// }
 /// ```
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct AccVec<const S: bool, T: TraceValue, C: TraceCount>
 where
     TDesc<S>: TArch,

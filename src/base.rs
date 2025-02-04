@@ -8,7 +8,7 @@ use crate::{Delta, TArch, TDesc};
 /// A basic timer that just contains the timer value
 ///
 /// This is used internally for all the timer implementations
-#[derive(Default, Debug)]
+#[derive(Default, Debug, Clone, Copy)]
 pub struct BaseTimer<const S: bool>
 where
     TDesc<S>: TArch,

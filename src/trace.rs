@@ -13,7 +13,7 @@ use crate::{BaseTimer, Delta, TArch, TDesc, TraceValue};
 /// with the 'trace' method.
 ///
 /// A Trace can be generated for any N, for T in u8, u16, u32, u64, u128 and usize
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Trace<const S: bool, T: TraceValue, const N: usize>
 where
     TDesc<S>: TArch,
@@ -86,7 +86,7 @@ where
 
 //a AccTrace
 //tp AccTrace
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct AccTrace<const S: bool, T: TraceValue, const N: usize>
 where
     TDesc<S>: TArch,
